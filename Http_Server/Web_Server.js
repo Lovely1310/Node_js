@@ -10,9 +10,21 @@ const http = require("http");
 // request object used to get info about current HTTP Request. EX - url, request header & data
 // response 
 const server = http.createServer((req,res)=>{
- res.end("Hello from the others side");
-} );
+if(req.url == "/"){
+ res.end("Hello lovely from the others side");
+
+}else if(req.url =="/about"){
+res.end("Hello lovely from the AboutUS side");
+}  // console.log(req.url);
+else if(req.url =="/contact"){
+    res.write("hello from contact side");
+res.end();
+} else{
+res.writeHead(404,{"content-type": "text/html"});
+    res.end("<h1> 404 error page </h1>");
+}
+  });
 
 server.listen(8000,"127.0.0.1",()=> {
-    console.log("listening the port no 8000");
+    console.log("listening the port no 8000 ");
 });
